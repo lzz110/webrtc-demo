@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "C5F7C445-EB06-4DE9-A0E5-9A950D6BE8D7"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "1778C98B-66F4-4904-9A4E-EAB68C4FEEF9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "webrtc::AudioDeviceMac::InitPlayout"
+            moduleName = "">
+            <Locations>
+               <Location
+                  uuid = "1778C98B-66F4-4904-9A4E-EAB68C4FEEF9 - 8aabfb79d1e3d465"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "webrtc::AudioDeviceMac::InitPlayout()"
+                  moduleName = "WebRTC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///../../modules/audio_device/mac/audio_device_mac.cc"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "941"
+                  endingLineNumber = "941">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Web ↔ Web 互通测试</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .steps { background: #2d3748; padding: 12px; border-radius: 8px; margin-bottom: 16px; font-size: 13px; color: #e2e8f0; }
+    .steps ol { margin: 8px 0 0 20px; }
+    .debug-log { font-family: monospace; font-size: 11px; max-height: 180px; overflow-y: auto; background: #1a202c; padding: 8px; border-radius: 6px; color: #68d391; }
+    .debug-log .err { color: #fc8181; }
+    .debug-log .recv { color: #63b3ed; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Web ↔ Web 互通测试</h1>
+      <p class="subtitle">开两个浏览器标签页，按步骤操作，验证消息与音频互通</p>
+    </header>
+
+   
+
+    <section class="signaling">
+      <h2>信令</h2>
+      <div class="row">
+        <label>房间号</label>
+        <input id="roomId" type="text" value="demo" placeholder="房间号" />
+        <button id="btnJoinOrLeave" type="button">加入房间</button>
+      </div>
+      <div id="signalingStatus" class="status">未连接</div>
+      <div id="myPeerId" class="status secondary" title="抓包时可据此区分本端">本端 peerId: —</div>
+      <div id="peersCount" class="status secondary"></div>
+    </section>
+
+    <section class="media">
+      <h2>连接</h2>
+      <div class="row">
+        <button id="btnStartCall" type="button" disabled>发起连接（我是主叫）</button>
+        <span id="callStatus" class="status secondary">—</span>
+      </div>
+      <div class="audio-meters">
+        <div class="meter-box">
+          <span>本地麦克风</span>
+          <div class="meter"><div id="localLevel" class="level"></div></div>
+        </div>
+        <div class="meter-box">
+          <span>远端音频</span>
+          <div class="meter"><div id="remoteLevel" class="level"></div></div>
+        </div>
+      </div>
+      <audio id="remoteAudio" autoplay playsinline></audio>
+    </section>
+
+    <section class="messages">
+      <h2>消息</h2>
+      <div class="row">
+        <input id="messageInput" type="text" placeholder="输入消息回车发送" disabled />
+        <button id="btnSend" type="button" disabled>发送</button>
+      </div>
+      <div class="row" style="margin-top: 8px;">
+        <input id="fileInput" type="file" />
+        <button id="btnSendFile" type="button" disabled>发送文件</button>
+      </div>
+      <ul id="messageList"></ul>
+    </section>
+
+    <section>
+      <h2>调试日志</h2>
+      <div id="debugLog" class="debug-log"></div>
+    </section>
+  </div>
+  <script src="web2web.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+.DS_Store
+__pycache__/
+.ruff_cache/
+
+/webrtc-web/node_modules/
+/test-parse/__pycache__/
+/test-parse/.ruff_cache/
+/test-parse/*.log
+/test-parse/*.mp4
+/test-parse/*.ivf
+/test-parse/*.wav

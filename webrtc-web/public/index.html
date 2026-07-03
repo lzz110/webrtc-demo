@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WebRTC Web - 仅接收 Mac 端音频</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>WebRTC Web 端（仅接收音频）</h1>
+      <p class="subtitle">接收 Mac 端音频 → 解码 → 扬声器播放</p>
+      <p class="subtitle"><a href="web2web.html" style="color: #63b3ed;">→ Web 与 Web 互通测试（双标签页调试）</a></p>
+    </header>
+
+    <section class="signaling">
+      <h2>信令</h2>
+      <div class="row">
+        <label>房间号</label>
+        <input id="roomId" type="text" value="demo" placeholder="房间号" />
+        <button id="btnJoinOrLeave" type="button">加入房间</button>
+      </div>
+      <div id="signalingStatus" class="status">未连接</div>
+      <div id="peersCount" class="status secondary"></div>
+    </section>
+
+    <section class="media">
+      <h2>音频接收</h2>
+      <div id="callStatus" class="status secondary">等待 Mac 端发起 Offer…</div>
+      <div id="netTuple" class="status secondary" style="margin-top: 8px;" title="用于抓包定位：来自 WebRTC getStats() 的候选对（local ↔ remote）">
+        网络端口对: —
+      </div>
+      <div class="audio-meters" style="margin-top: 12px;">
+        <div class="meter-box">
+          <span>远端音频</span>
+          <div class="meter"><div id="remoteLevel" class="level"></div></div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 12px;">
+        <button id="btnUnmute" type="button" style="display:none;">点击启用扬声器播放</button>
+      </div>
+      <audio id="remoteAudio" autoplay playsinline></audio>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

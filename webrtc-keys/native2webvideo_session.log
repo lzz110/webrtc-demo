@@ -1,0 +1,4 @@
+# 仅 native2webvideo.pcapng 对应 DTLS 会话 (ClientHello random d77f76e1...)
+# role=client: SRTP=send_key, SRTP_SERVER=recv_key
+SRTP e6f07756260f08e8f95dc9d1b4f212c482cc72a086959640ad7ac0df003d
+SRTP_SERVER 2ee5de680901eb8a00f02a0de9601b6d873f9e87ead0e79c9f80e2bb28fd

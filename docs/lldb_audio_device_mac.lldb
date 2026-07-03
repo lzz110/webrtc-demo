@@ -1,0 +1,45 @@
+# lldb 启动脚本：AudioDeviceMac 学习用断点
+# 用法：
+#   lldb -s docs/lldb_audio_device_mac.lldb \
+#     /path/to/AppRTCMobile.app/Contents/MacOS/AppRTCMobile
+
+# ===== 1. 生命周期：构造 / 初始化 =====
+breakpoint set -n "webrtc::AudioDeviceMac::AudioDeviceMac"
+breakpoint set -n "webrtc::AudioDeviceMac::Init"
+breakpoint set -n "webrtc::AudioDeviceMac::InitMicrophone"
+breakpoint set -n "webrtc::AudioDeviceMac::InitSpeaker"
+
+# ===== 2. 流程：录音/播放初始化与启动 =====
+breakpoint set -n "webrtc::AudioDeviceMac::InitPlayout"
+breakpoint set -n "webrtc::AudioDeviceMac::InitRecording"
+breakpoint set -n "webrtc::AudioDeviceMac::StartPlayout"
+breakpoint set -n "webrtc::AudioDeviceMac::StartRecording"
+breakpoint set -n "webrtc::AudioDeviceMac::StopPlayout"
+breakpoint set -n "webrtc::AudioDeviceMac::StopRecording"
+
+# ===== 3. 设备事件 =====
+breakpoint set -n "webrtc::AudioDeviceMac::objectListenerProc"
+
+# ===== 4. IO 回调：默认 log-only，不要硬停（实时线程） =====
+# 想真停时改成 --auto-continue false
+
+breakpoint set -n "webrtc::AudioDeviceMac::implDeviceIOProc" \
+  --command "frame info" --auto-continue true
+
+breakpoint set -n "webrtc::AudioDeviceMac::implOutConverterProc" \
+  --command "frame info" --auto-continue true
+
+breakpoint set -n "webrtc::AudioDeviceMac::implInDeviceIOProc" \
+  --command "frame info" --auto-continue true
+
+# ===== 5. 上游接口（看 PCM 进出 ADM 的边界） =====
+breakpoint set -n "webrtc::AudioDeviceBuffer::DeliverRecordedData"
+breakpoint set -n "webrtc::AudioDeviceBuffer::RequestPlayoutData"
+
+# ===== 6. 一些有用的别名 =====
+command alias adm_state expression -- \
+  "(void)printf(\"outDevice=%u inDevice=%u renderDelay=%uus captureDelay=%uus\\n\", _outputDeviceID, _inputDeviceID, _renderDelayUs, _captureDelayUs)"
+
+# 提示
+script print("[lldb] AudioDeviceMac 断点已加载。`run` 启动；IO 回调断点默认 auto-continue（不会卡死实时线程）。")
+script print("[lldb] 想真停 IO 回调：`breakpoint modify --auto-continue false <id>`")
