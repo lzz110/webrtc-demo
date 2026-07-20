@@ -102,6 +102,8 @@ python3 src/webrtc_h264_extractor.py extract capture.pcapng -k combined_keys.log
 
 ## 关键文档
 
+- 字节音视频技术支持面试手册：
+  [docs/bytedance_av_support_interview.md](docs/bytedance_av_support_interview.md)
 - 项目/简历包装：
   [docs/project_for_resume.md](/Users/lizhengze/Desktop/demo/webrtc-demo/docs/project_for_resume.md:1)
 - WebRTC 复盘分享：
